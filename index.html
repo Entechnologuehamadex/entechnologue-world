@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Entechnologue World</title>
   <meta name="description" content="Entechnologue World — we are on the path to shape the landscape with innovative technologies. The home of Sheda, Dr Food Ltd and what comes next.">
   <meta name="theme-color" content="#0b0612">
@@ -38,9 +38,11 @@
       --night: #0b0612;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    html { height: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
-      min-height: 100svh;
+      /* One screen on every device: fill the visible viewport, scroll only if it is genuinely too small */
+      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       background: var(--night);
@@ -49,6 +51,11 @@
       -webkit-font-smoothing: antialiased;
       position: relative;
       overflow-x: hidden;
+      padding:
+        env(safe-area-inset-top, 0px)
+        env(safe-area-inset-right, 0px)
+        env(safe-area-inset-bottom, 0px)
+        env(safe-area-inset-left, 0px);
     }
 
     /* Background: the lightbulb chalkboard, darkened and tinted with the brand purple */
@@ -73,7 +80,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 48px 16px 32px;
+      padding: clamp(16px, 5vh, 48px) 16px clamp(8px, 2vh, 24px);
     }
     .reveal { animation: rise 0.9s cubic-bezier(.2, .7, .2, 1) both; }
     .reveal:nth-child(2) { animation-delay: .12s; }
@@ -82,24 +89,26 @@
     .reveal:nth-child(5) { animation-delay: .48s; }
     @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
+    /* Sizes follow whichever is tighter: the screen's width or its height */
     .logo {
-      width: clamp(112px, 22vw, 168px);
+      width: clamp(44px, min(30vw, 17vh), 176px);
       height: auto;
-      margin-bottom: 28px;
+      margin-bottom: clamp(10px, 3vh, 28px);
       filter: drop-shadow(0 0 32px rgba(138, 27, 191, 0.45));
     }
     h1 {
       font-family: "Archivo", sans-serif;
       font-weight: 800;
       font-stretch: 112%;
-      font-size: clamp(1.5rem, 7.6vw, 4.6rem);
+      font-size: clamp(1.3rem, min(7.2vw, 8.5vh), 5rem);
       line-height: 1;
       letter-spacing: 0.01em;
       text-transform: uppercase;
+      max-width: 100%;
     }
     h1 span {
       display: block;
-      font-size: 0.34em;
+      font-size: max(0.34em, 0.72rem);
       font-weight: 700;
       letter-spacing: 0.6em;
       margin-top: 0.7em;
@@ -108,20 +117,21 @@
     }
     .tagline {
       max-width: 34ch;
-      margin-top: 26px;
-      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
-      line-height: 1.5;
+      margin-top: clamp(10px, 3vh, 26px);
+      font-size: clamp(0.95rem, min(2.4vw, 2.5vh), 1.35rem);
+      line-height: 1.45;
       color: var(--ink);
+      text-wrap: balance;
     }
     .status {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-top: 22px;
-      padding: 7px 14px;
+      margin-top: clamp(10px, 2.6vh, 22px);
+      padding: 6px 14px;
       border: 1px solid rgba(240, 194, 15, 0.35);
       border-radius: 999px;
-      font-size: 0.82rem;
+      font-size: clamp(0.68rem, 1.6vh, 0.82rem);
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -139,22 +149,23 @@
     @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(240, 194, 15, 0); } 100% { box-shadow: 0 0 0 0 rgba(240, 194, 15, 0); } }
 
     /* Ventures */
-    .ventures { margin-top: 52px; width: 100%; max-width: 640px; }
+    .ventures { margin-top: clamp(16px, 5.5vh, 56px); width: 100%; max-width: 640px; }
     .ventures h2 {
-      font-size: 0.78rem;
+      font-size: clamp(0.66rem, 1.5vh, 0.78rem);
       font-weight: 600;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 16px;
+      margin-bottom: clamp(8px, 1.8vh, 16px);
     }
-    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 2vw, 14px); }
     .card {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 6px;
-      padding: 20px 20px 18px;
+      gap: clamp(2px, 0.7vh, 6px);
+      min-width: 0;
+      padding: clamp(10px, 2.2vh, 20px) clamp(12px, 3vw, 20px);
       text-align: left;
       text-decoration: none;
       color: var(--ink);
@@ -174,15 +185,16 @@
     .card strong {
       font-family: "Archivo", sans-serif;
       font-weight: 700;
-      font-size: 1.15rem;
+      font-size: clamp(0.95rem, min(3.6vw, 2.4vh), 1.15rem);
       letter-spacing: 0.02em;
     }
-    .card small { font-size: 0.93rem; line-height: 1.45; color: var(--muted); }
+    .card small { font-size: clamp(0.8rem, 1.9vh, 0.93rem); line-height: 1.4; color: var(--muted); }
     .card .go {
-      margin-top: 8px;
-      font-size: 0.85rem;
+      margin-top: clamp(2px, 1vh, 8px);
+      font-size: clamp(0.74rem, 1.8vh, 0.85rem);
       font-weight: 600;
       color: var(--gold);
+      overflow-wrap: anywhere;
     }
     .card .go::after { content: " \2197"; }
 
@@ -191,9 +203,9 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 10px 22px;
-      padding: 20px 16px 28px;
-      font-size: 0.88rem;
+      gap: 6px 22px;
+      padding: clamp(8px, 2vh, 20px) 16px clamp(12px, 3vh, 28px);
+      font-size: clamp(0.76rem, 1.8vh, 0.88rem);
       color: var(--muted);
     }
     footer a {
@@ -206,11 +218,30 @@
     footer a:hover { color: var(--gold); }
     footer svg { width: 15px; height: 15px; fill: currentColor; }
 
+    /* Phones in portrait: narrower heading width, background framed on the bulb */
     @media (max-width: 560px) {
-      .cards { grid-template-columns: 1fr; }
       .bg { background-position: 30% center; }
-      h1 { font-size: 7.4vw; font-stretch: 100%; }
-      h1 span { font-size: 0.8rem; letter-spacing: 0.5em; margin-right: -0.5em; }
+      h1 { font-stretch: 100%; font-size: clamp(1.3rem, min(8vw, 8.5vh), 5rem); }
+      h1 span { letter-spacing: 0.5em; margin-right: -0.5em; }
+    }
+    /* Very narrow screens (small phones, split view): stack the venture cards */
+    @media (max-width: 300px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+    /* Short screens (phones in landscape, small windows): tighter rhythm so it still fits */
+    @media (max-height: 480px) {
+      main { padding-top: 12px; padding-bottom: 4px; }
+      .logo { width: clamp(40px, 13vh, 64px); margin-bottom: 8px; }
+      h1 { font-size: clamp(1.2rem, min(7vw, 7.5vh), 2.2rem); }
+      h1 span { margin-top: 0.5em; }
+      .tagline { margin-top: 8px; font-size: 0.9rem; line-height: 1.35; max-width: 48ch; }
+      .status { margin-top: 8px; padding: 4px 12px; }
+      .ventures { margin-top: 12px; max-width: 520px; }
+      .ventures h2 { display: none; }
+      .card { padding: 8px 14px; gap: 2px; }
+      .card small { display: none; }
+      .card .go { margin-top: 0; }
+      footer { padding: 6px 16px 8px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
