@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entechnologue World</title>
+  <meta name="description" content="Entechnologue World — we are on the path to shape the landscape with innovative technologies. The home of Sheda, Dr Food Ltd and what comes next.">
+  <meta name="theme-color" content="#0b0612">
+  <link rel="canonical" href="https://entechnologue.org/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Entechnologue World">
+  <meta property="og:title" content="Entechnologue World">
+  <meta property="og:description" content="We are on the path to shape the landscape with innovative technologies.">
+  <meta property="og:url" content="https://entechnologue.org/">
+  <meta property="og:image" content="https://entechnologue.org/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@entechnologue">
+  <meta name="twitter:title" content="Entechnologue World">
+  <meta name="twitter:description" content="We are on the path to shape the landscape with innovative technologies.">
+  <meta name="twitter:image" content="https://entechnologue.org/assets/og-image.jpg">
+
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" as="image" href="assets/background.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,700;112,800&family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #f4f1f8;
+      --muted: #c9bfd6;
+      --purple: #8a1bbf;
+      --purple-soft: #b45ee0;
+      --gold: #f0c20f;
+      --night: #0b0612;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      background: var(--night);
+      color: var(--ink);
+      font-family: "Cabin", system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background: the lightbulb chalkboard, darkened and tinted with the brand purple */
+    .bg, .bg::after { position: fixed; inset: 0; }
+    .bg {
+      z-index: -1;
+      background: url("assets/background.jpg") center 35% / cover no-repeat;
+      animation: settle 2.4s ease-out both;
+    }
+    .bg::after {
+      content: "";
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(11, 6, 18, 0.55) 0%, rgba(11, 6, 18, 0.88) 70%),
+        linear-gradient(180deg, rgba(138, 27, 191, 0.18) 0%, rgba(11, 6, 18, 0.35) 60%, rgba(11, 6, 18, 0.95) 100%);
+    }
+    @keyframes settle { from { transform: scale(1.06); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 16px 32px;
+    }
+    .reveal { animation: rise 0.9s cubic-bezier(.2, .7, .2, 1) both; }
+    .reveal:nth-child(2) { animation-delay: .12s; }
+    .reveal:nth-child(3) { animation-delay: .24s; }
+    .reveal:nth-child(4) { animation-delay: .36s; }
+    .reveal:nth-child(5) { animation-delay: .48s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+    .logo {
+      width: clamp(112px, 22vw, 168px);
+      height: auto;
+      margin-bottom: 28px;
+      filter: drop-shadow(0 0 32px rgba(138, 27, 191, 0.45));
+    }
+    .eyebrow {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.32em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-family: "Archivo", sans-serif;
+      font-weight: 800;
+      font-stretch: 112%;
+      font-size: clamp(1.5rem, 7.6vw, 4.6rem);
+      line-height: 1;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    h1 span {
+      display: block;
+      font-size: 0.34em;
+      font-weight: 700;
+      letter-spacing: 0.6em;
+      margin-top: 0.7em;
+      margin-right: -0.6em; /* balance trailing letter-spacing */
+      color: var(--muted);
+    }
+    .tagline {
+      max-width: 34ch;
+      margin-top: 26px;
+      font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      padding: 7px 14px;
+      border: 1px solid rgba(240, 194, 15, 0.35);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(11, 6, 18, 0.45);
+    }
+    .status::before {
+      content: "";
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 0 rgba(240, 194, 15, 0.6);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(240, 194, 15, 0); } 100% { box-shadow: 0 0 0 0 rgba(240, 194, 15, 0); } }
+
+    /* Ventures */
+    .ventures { margin-top: 52px; width: 100%; max-width: 640px; }
+    .ventures h2 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 20px 20px 18px;
+      text-align: left;
+      text-decoration: none;
+      color: var(--ink);
+      border: 1px solid rgba(244, 241, 248, 0.14);
+      border-radius: 14px;
+      background: rgba(20, 10, 32, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: border-color .25s, transform .25s, background .25s;
+    }
+    .card:hover, .card:focus-visible {
+      border-color: var(--purple-soft);
+      background: rgba(60, 16, 88, 0.55);
+      transform: translateY(-3px);
+    }
+    .card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .card strong {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+    }
+    .card small { font-size: 0.93rem; line-height: 1.45; color: var(--muted); }
+    .card .go {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .card .go::after { content: " \2197"; }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px 22px;
+      padding: 20px 16px 28px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    footer a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--gold); }
+    footer svg { width: 15px; height: 15px; fill: currentColor; }
+
+    @media (max-width: 560px) {
+      .cards { grid-template-columns: 1fr; }
+      .bg { background-position: 30% center; }
+      h1 { font-size: 7.4vw; font-stretch: 100%; }
+      h1 span { font-size: 0.8rem; letter-spacing: 0.5em; margin-right: -0.5em; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main>
+    <img class="logo reveal" src="assets/logo.png" width="600" height="599" alt="Entechnologue World logo">
+    <div class="reveal">
+      <p class="eyebrow">HAMADEX</p>
+      <h1>Entechnologue<span>World</span></h1>
+    </div>
+    <p class="tagline reveal">We are on the path to shape the landscape with innovative technologies.</p>
+    <p class="status reveal">Something new is coming</p>
+
+    <section class="ventures reveal" aria-labelledby="ventures-title">
+      <h2 id="ventures-title">Our ventures</h2>
+      <div class="cards">
+        <a class="card" href="https://sheda.app" target="_blank" rel="noopener">
+          <strong>Sheda</strong>
+          <small>Now building.</small>
+          <span class="go">sheda.app</span>
+        </a>
+        <a class="card" href="https://x.com/drfoodltd" target="_blank" rel="noopener">
+          <strong>Dr Food Ltd</strong>
+          <small>In progress.</small>
+          <span class="go">@drfoodltd on X</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="https://x.com/entechnologue" target="_blank" rel="noopener" aria-label="Entechnologue on X">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @entechnologue
+    </a>
+    <span>&copy; <span id="year">2026</span> Entechnologue World</span>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
