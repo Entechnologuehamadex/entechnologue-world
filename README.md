@@ -1,6 +1,6 @@
 # Entechnologue World
 
-Placeholder site for **Entechnologue World** — the parent brand behind Sheda, Dr Food Ltd and future ventures.
+Placeholder site for **Entechnologue World** — the parent brand behind Sheda, Dr Foods Ltd and future ventures.
 
 > We are on the path to shape the landscape with innovative technologies.
 
